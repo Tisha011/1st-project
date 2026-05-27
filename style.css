@@ -6,6 +6,7 @@
 }
 
 :root {
+    color-scheme: light;
     --accent:#8B4513;
     --bg:beige;
     --card:#fff8dc;
