@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumu's Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <div>
+                <div class="logo"><img src="/icon/icon.jpg" alt="Logo Icon" class="logo-icon"> SUMU'S PROJECT</div>
+                <button class="nav-btn active" data-page="focus">⏱ Focus Zone</button>
+                <button class="nav-btn" data-page="finance">💰 Finances</button>
+                <button class="nav-btn" data-page="campus">📍 Campus Guide</button>
+            </div>
+            <div>
+                <p style="color:var(--muted);margin-bottom:10px">Theme Accent</p>
+                <div class="theme-switch">
+                    <button class="theme-btn" style="background:#8B4513" onclick="setTheme('#8B4513')"></button>
+                    <button class="theme-btn" style="background:#f97316" onclick="setTheme('#f97316')"></button>
+                    <button class="theme-btn" style="background:#22c55e" onclick="setTheme('#22c55e')"></button>
+                    <button class="theme-btn" style="background:#ec4899" onclick="setTheme('#ec4899')"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="header">
+                <div>
+                    <h1>Welcome back, Creator! 👋</h1>
+                    <p style="color:var(--muted);margin-top:8px">Your personal command center is optimized and active.</p>
+                </div>
+                <div class="clock" id="clock"></div>
+            </div>
+
+            <div id="focus" class="page active">
+                <div class="grid">
+                    <div class="card">
+                        <h2 class="section-title">Sleek Pomodoro</h2>
+                        <div class="timer-circle" id="timer">25:00</div>
+                        <div style="max-width:240px;margin:auto">
+                            <label>Session Minutes</label>
+                            <input type="number" id="minutesInput" value="25">
+                        </div>
+                        <div class="controls">
+                            <button class="btn" onclick="startTimer()">▶ Start</button>
+                            <button class="btn secondary" onclick="resetTimer()">Reset</button>
+                            <button class="btn secondary" onclick="skipTimer()">Skip</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="section-title">Tasks List</h2>
+                        <input type="text" id="taskInput" placeholder="Add high-priority task...">
+                        <button class="btn" style="width:100%;margin-top:16px" onclick="addTask()">+ Add Task</button>
+                        <div class="task-list" id="taskList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="finance" class="page">
+                <div class="stats">
+                    <div class="stat-card">
+                        <p>Remaining Balance</p>
+                        <h2 class="green" id="balance">$1000</h2>
+                    </div>
+                    <div class="stat-card">
+                        <p>Total Spent</p>
+                        <h2 class="red" id="spent">$0</h2>
+                    </div>
+                    <div class="stat-card">
+                        <p>Modify Budget</p>
+                        <input type="number" id="budgetInput" placeholder="1000">
+                        <button class="btn" style="width:100%;margin-top:16px" onclick="updateBudget()">Update</button>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="card">
+                        <h2 class="section-title">Log Expense</h2>
+                        <input type="text" id="expenseTitle" placeholder="Expense description">
+                        <input type="number" id="expenseAmount" placeholder="Amount">
+                        <select id="expenseCategory">
+                            <option>Food</option>
+                            <option>Travel</option>
+                            <option>Books</option>
+                            <option>Rent</option>
+                        </select>
+                        <button class="btn" style="width:100%;margin-top:20px" onclick="addExpense()">+ Log Transaction</button>
+                    </div>
+                    <div class="card">
+                        <h2 class="section-title">Recent Expenses</h2>
+                        <div class="task-list" id="expenseList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="campus" class="page">
+                <div class="grid">
+                    <div class="card">
+                        <h2 class="section-title">Interactive Campus Map</h2>
+                        <div class="map-container">
+                            <iframe id="campusMap" allow="geolocation" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=90.443%2C23.794%2C90.455%2C23.801&amp;layer=mapnik"></iframe>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="section-title">Campus Directory</h2>
+                        <input type="text" id="searchInput" placeholder="Search campus places..." onkeyup="searchDirectory()">
+                        <div class="filters">
+                            <button class="filter-btn active" onclick="filterDirectory('all',this)">All</button>
+                            <button class="filter-btn" onclick="filterDirectory('library',this)">Libraries</button>
+                            <button class="filter-btn" onclick="filterDirectory('cafe',this)">Cafes</button>
+                            <button class="filter-btn" onclick="filterDirectory('study',this)">Study Zones</button>
+                            <button class="filter-btn" onclick="filterDirectory('hospital',this)">Hospitals</button>
+                        </div>
+                        <div class="task-list" id="directoryList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
